@@ -1,0 +1,16 @@
+postgres:
+	sudo docker run --name postgres -p 5432:5432 -e POSTGRES_USER=root -e POSTGRES_PASSWORD=testPassword -d postgres:16.1-alpine3.18
+
+createdb:
+	sudo docker exec -it postgres createdb --username=root --owner=root book-management-api
+
+dropdb:
+	sudo docker exec -it postgres dropdb book-management-api
+
+startdb:
+	sudo docker start postgres
+
+stopdb:
+	sudo docker stop postgres
+
+.PHONY: postgres createdb dropdb startdb stopdb
